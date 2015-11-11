@@ -1,0 +1,37 @@
+<jumbo-common></jumbo-common>
+
+<div class="container" scrolly-scroll>
+    <div class="row">
+        <div class="container" scrolly-scroll >
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="col-sm-6 col-md-3 " ng-repeat="episode in episodes">
+                        <div class="thumbnail">
+                            <div class="row">
+                                <div class="col-md-12 col-xs-12">
+                                    <h4 class="text-center title">{{episode.title}}</h4>
+                                </div>
+
+                            </div>
+                            <img class="img-responsive" ng-src="{{episode.imgURL}}">
+                            <div class="caption">
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12">
+                                        <h4>{{episode.subtitle}}</h4>
+                                    </div>
+                                </div>
+                                <p>{{episode.description}}</p>
+                            </div>
+                            <div class="button">
+                                <a class="btn btn-primary btn-block" ng-disabled="!{{episode.active}}" ui-sref='{{episode.buttonLink}}'>{{episode.button}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

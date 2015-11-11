@@ -1,0 +1,53 @@
+<jumbo-common ng-class="{'fullscreen': fullscreen}"></jumbo-common>
+
+<div class="container  course-container " ng-class="{'fullscreen': fullscreen}">
+	<div class="row">
+		<div class="col-md-9">
+
+			<div class="embed-responsive embed-responsive-16by9">
+							<video id="videoTutorial" src="{{videoUrl}}" controls>
+					Your browser does not support the <code>video</code> element.
+				</video>
+			</div>
+			<hr>
+			<button class="btn btn-sm btn-primary pull-right fullscreen-btn" ng-click="fullscreen = !fullscreen"><span class="glyphicon glyphicon-resize-full" ></span></button>
+			<tabset>
+				<tab heading="Code">
+					 <div ng-include="'components/AngularCharts/exercise.partial-view.html'"></div>
+				</tab>
+				<tab heading="Code Challange">
+					<div ng-include="'components/AngularCharts/codeChallange.partial-view.html'"></div>
+				</tab>
+			</tabset>
+
+		</div>
+
+		<div class="col-md-3">
+
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title"><span class="glyphicon glyphicon-facetime-video" > </span>  Navigate Video</h3>
+				</div>
+				<div class="panel-body">
+					<select angular-ripple="" class="form-control" name="videoSelect" id="videoSelect" ng-change="jumpVideo( data.videoSelect , 'videoTutorial') "
+					ng-model="data.videoSelect">
+
+					</select>
+				</div>
+			</div>
+
+
+
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title"><span class="glyphicon glyphicon-book" ></span>  Documentation</h3>
+				</div>
+				<div class="panel-body">
+					<a href="https://github.com/Appverse/generator-appverse-html5/" target="_blank" angular-ripple="" class="btn btn-default btn-block"></span>Repository</a>
+					<a href="https://github.com/Appverse/generator-appverse-html5/blob/master/README.md" target="_blank" angular-ripple="" class="btn btn-default btn-block"></span>Readme</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
