@@ -1,10 +1,12 @@
-web
 ============
 
-Appverse Web 
+Appverse Web
 ============
 
-This is the repository of the Appverse Web HTML5 Bolierplate subproject. It provides an starting point for an Appverse Web HTML5 project
+This is the repository of the Appverse Training Website inspiration project. It provides an starting point to create a simple training site that we can use to distribute or share training or demo videos in the future. It is provided as an boilerplate project or inspiration.
+
+All of our code is using APL License and content(sample videos or pdfs) is not licensed to be reused.
+
 Appverse Web is a multi-frontend technology capable web application framework incorporating the best-of-breed open source stack to meet the challenges of secure and robust server-side service development, integration and delivery.
 
 ## More Information
@@ -36,23 +38,23 @@ bower install
 ```
 * run project
 
-Run the application. 
+Run the application.
 
 `grunt server`
 
 Run the appliction and open the browser.
 
-`grunt server:open` 
+`grunt server:open`
 
 ## Testing
 
 Exexecute the following command to launch tests
 
 `grunt test`
- 
+
  <!-- Available Grunt task (generated running 'grunt list') -->
- Grunt tasks list 
----------------- 
+ Grunt tasks list
+----------------
 ###storeCoverage
 store coverage from global
 ###karma
@@ -142,4 +144,4 @@ Alias for "clean:dist", "dist", "webkit-manifest", "nwjs" tasks.
 ###ngAnnotate
 Add, remove and rebuild AngularJS dependency injection annotations (Multitask)
 ###grunt-license-report
-No info 
+No info
