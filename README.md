@@ -1,6 +1,4 @@
-============
-
-Appverse Web
+Appverse Training Website inspiration project
 ============
 
 This is the repository of the Appverse Training Website inspiration project. It provides an starting point to create a simple training site that we can use to distribute or share training or demo videos in the future. It is provided as an boilerplate project or inspiration.
