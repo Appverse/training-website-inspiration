@@ -5098,7 +5098,9 @@ button.close {
     -ms-transform: translate(0, -25%);
     transform: translate(0, -25%);
     -webkit-transition: -webkit-transform 0.3s ease-out;
-    transition: transform 0.3s ease-out; }
+    transition: -webkit-transform 0.3s ease-out;
+    transition: transform 0.3s ease-out;
+    transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out; }
   .modal.in .modal-dialog {
     -webkit-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
@@ -5442,7 +5444,9 @@ button.close {
     @media all and (transform-3d), (-webkit-transform-3d) {
       .carousel-inner > .item {
         -webkit-transition: -webkit-transform 0.6s ease-in-out;
+        transition: -webkit-transform 0.6s ease-in-out;
         transition: transform 0.6s ease-in-out;
+        transition: transform 0.6s ease-in-out, -webkit-transform 0.6s ease-in-out;
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
         -webkit-perspective: 1000px;
@@ -6075,11 +6079,11 @@ img {
     .navbar .navbar-nav > li > a i {
       margin-right: .5em;
       -webkit-transition: all .2s linear;
-              transition: all .2s linear; }
+      transition: all .2s linear; }
     .navbar .navbar-nav > li > a ng-md-icon {
       fill: #565656;
       -webkit-transition: all .2s linear;
-              transition: all .2s linear; }
+      transition: all .2s linear; }
     .navbar .navbar-nav > li > a:hover ng-md-icon {
       fill: #213e7f; }
   .navbar .navbar-nav > li.active a {
@@ -6120,10 +6124,10 @@ img {
 /*Dropdown toggle*/
 .dropdown-toggle {
   -webkit-transition: all .1s linear;
-          transition: all .1s linear; }
+  transition: all .1s linear; }
   .dropdown-toggle .caret {
     -webkit-transition: all .1s linear;
-            transition: all .1s linear; }
+    transition: all .1s linear; }
   .dropdown-toggle[aria-expanded="true"] .caret {
     -webkit-transform: rotate(180deg);
         -ms-transform: rotate(180deg);
@@ -6131,7 +6135,7 @@ img {
 
 .dropdown-menu {
   -webkit-transition: all .1s linear;
-          transition: all .1s linear; }
+  transition: all .1s linear; }
 
 /*Input styles*/
 .form-control:hover {
@@ -6578,7 +6582,7 @@ accordion .panel {
       border-radius: 15px;
       margin-right: 10px;
       -webkit-transition: background .3s ease;
-              transition: background .3s ease;
+      transition: background .3s ease;
       vertical-align: middle;
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -6596,7 +6600,7 @@ accordion .panel {
         left: -5px;
         top: -4px;
         -webkit-transition: left .3s ease,background .3s ease,box-shadow .1s ease;
-                transition: left .3s ease,background .3s ease,box-shadow .1s ease; }
+        transition: left .3s ease,background .3s ease,box-shadow .1s ease; }
       .toggle-button label .toggle:before {
         content: "NO";
         color: #fff;
@@ -6789,7 +6793,7 @@ accordion .panel {
   .ui-select-container .selectize-input:after {
     border-color: #565656 transparent transparent transparent !important;
     -webkit-transition: all .25s ease;
-            transition: all .25s ease; }
+    transition: all .25s ease; }
   .ui-select-container .selectize-input.focus:after {
     -webkit-transform: rotate(180deg);
         -ms-transform: rotate(180deg);
@@ -6979,7 +6983,7 @@ rzslider {
     background-color: #fff;
     box-shadow: -0.776px 2.898px 3px 0px rgba(0, 1, 1, 0.35), inset 1px 1.732px 1px 0px rgba(255, 255, 255, 0.2);
     -webkit-transition: box-shadow .3s ease;
-            transition: box-shadow .3s ease; }
+    transition: box-shadow .3s ease; }
     rzslider span.rz-pointer:after {
       display: none; }
     rzslider span.rz-pointer:active {
@@ -7044,7 +7048,7 @@ ng-md-icon > svg {
     margin-left: -2px;
     width: 20px;
     height: 20px;
-    box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0px 0px 0 10px inset; }
+    box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0px 0px 0 10px inset; }
   100% {
     -webkit-transform: rotate(0deg);
             transform: rotate(0deg);
@@ -7052,7 +7056,7 @@ ng-md-icon > svg {
     margin-left: -2px;
     width: 20px;
     height: 20px;
-    box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0px 0px 0 0px inset; } }
+    box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0px 0px 0 0px inset; } }
 
 @keyframes checkbox-off {
   0% {
@@ -7074,7 +7078,7 @@ ng-md-icon > svg {
     margin-left: -2px;
     width: 20px;
     height: 20px;
-    box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0px 0px 0 10px inset; }
+    box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0px 0px 0 10px inset; }
   100% {
     -webkit-transform: rotate(0deg);
             transform: rotate(0deg);
@@ -7082,7 +7086,7 @@ ng-md-icon > svg {
     margin-left: -2px;
     width: 20px;
     height: 20px;
-    box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0px 0px 0 0px inset; } }
+    box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0px 0px 0 0px inset; } }
 
 @-webkit-keyframes rippleOn {
   0% {

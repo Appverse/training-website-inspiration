@@ -20,8 +20,8 @@ module.exports = {
                 baseDir: ['./<%= paths.app %>']
             },
             files: [
-                         'app/scripts/**/*.js',
-                         'app/scripts/*.js'
+                         'app/**/*.js',
+                         'app/**/*.html'
                       ],
             ports: {
                 min: 9000,

@@ -34,7 +34,7 @@ angular.module('App.Controllers')
                                 subtitle: 'Overview over the most popular AngularJS built in Directives'
                         };
 
-                        $scope.videoUrl = '/resources/videos/directives.mp4';
+                        $scope.videoUrl = '/resources/videos/directives.mp';
                         $scope.pdfUrl = '/resources/pdfs/directives-lesson-1.pdf';
 
                         $scope.jumpVideo = function (time, id) {
