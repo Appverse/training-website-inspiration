@@ -1,0 +1,38 @@
+  
+[
+  {
+    "id": 1,
+    "jumbo": {
+      "title": "Routing",
+      "subtitle": "ui.route and ui-view concepts and exercises with resolve and factories"
+    },
+    "video": {
+      "videoUrl": "/resources/videos/routing.mp4",
+      "videoTimes": [
+        {
+          "time": 10,
+          "description": "ui-router - 0:10"
+        },
+        {
+          "time": 237,
+          "description": "ui-view - 3:56"
+        },
+        {
+          "time": 353,
+          "description": "Ext. ui-router 1 - 5:50"
+        },
+        {
+          "time": 445,
+          "description": "Ext. ui-router 2 - 7:25"
+        }
+      ]
+    },
+    "pdfUrl": "/resources/pdfs/routing-lesson-2.pdf",
+    "documentation": [
+      {
+        "url": "https://appverse.gftlabs.com/git/users/roca/repos/training-repo-part1/browse?at=refs%2Ftags%2Frouting-step-2",
+        "description": "Repository"
+      }
+    ]
+  }
+]

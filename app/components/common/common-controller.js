@@ -21,25 +21,24 @@
 'use strict';
 
 /*
- * Controller Routing for view Routing.
+ * Controller FormValidation for view FormValidation.
  * Pay attention to injection of dependencies (factories, entities and Angular objects).
  */
 angular.module('App.Controllers')
 
-.controller('RoutingController', ['$scope', 'videoControl', 
-        function ($scope , videoControl ) {
-        // JUMBO TITLES
+.controller('commonController', ['$scope', 'videoControl', 'courseData',
+        function ($scope , videoControl, courseData) {
+        
         $scope.jumbo =  {
-                title : 'Routing',
-                subtitle:'ui.route and ui-view concepts and exercises with resolve and factories and $q'
+                title : courseData.jumbo.title,
+                subtitle: courseData.jumbo.subtitle
         };
-          $scope.videoUrl = '/resources/videos/routing.mp4';
-          $scope.pdfUrl = '/resources/pdfs/routing-lesson-2.pdf';
-
-
+        $scope.videoUrl = courseData.video.videoUrl;
+        $scope.videoTime = courseData.video.videoTimes;
+        $scope.pdfUrl = courseData.pdfUrl;
+        $scope.documentation =courseData.documentation;
         $scope.jumpVideo = function(time , id ){
              videoControl.goTo(time , id);    
         };
-        
         }
 ]);

@@ -1,0 +1,24 @@
+[
+  {
+    "id": 0,
+    "jumbo": {
+      "title": "Generator",
+      "subtitle": "Using Generator and tools"
+    },
+    "video": {
+      "videoUrl": "/resources/videos/generatorRun.mp4",
+      "videoTimes": [
+        {
+          "time": 8,
+          "description": "Generate Project - 0:08"
+        },
+        {
+          "time": 59,
+          "description": "Run Server - 0:59"
+        }
+      ]
+    },
+    "pdfUrl": "/resources/pdfs/generator-lesson-0.pdf",
+    "documentation": []
+  }
+]

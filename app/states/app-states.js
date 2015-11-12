@@ -32,64 +32,64 @@ angular.module('webApp')
                 // 2-State Configurations
                 // Several states hav been configured:
                 // home
-                // tasks
+                // tasks'ProteoExercise
                 //
                 //////////////////////////
 
                 // We must configure states using $stateProvider.
-                $stateProvider.state('AngularCharts', {url: '/AngularCharts',templateUrl: 'components/AngularCharts/AngularCharts.html',controller: 'AngularChartsController'}).state('Detection', {url: '/Detection',templateUrl: 'components/Detection/Detection.html',controller: 'DetectionController'})
+                $stateProvider
+
+                    .state('Directives', {
+                        url: '/Directives',
+                        templateUrl: 'components/Directives/Directives.html',
+                        controller: 'commonController',
+                        resolve: {
+                            'courseData': function (courseServices) {
+                                var stateName = Object.getOwnPropertyNames(this.includes);
+                                return courseServices.getCourse(stateName[1].toLowerCase());
+                            }
+                        }
+                    })
+
 
                     .state('Routing', {
                         url: '/Routing',
                         templateUrl: 'components/Routing/Routing.html',
-                        controller: 'RoutingController'
-                    }).state('Directives', {
-                        url: '/Directives',
-                        templateUrl: 'components/Directives/Directives.html',
-                        controller: 'DirectivesController'
-                    }).state('Setup', {
-                        url: '/Setup',
-                        templateUrl: 'components/Setup/Setup.html',
-                        controller: 'SetupController'
+                        controller: 'commonController',
+                        resolve: {
+                            'courseData': function (courseServices) {
+                                var stateName = Object.getOwnPropertyNames(this.includes);
+                                return courseServices.getCourse(stateName[1].toLowerCase());
+                            }
+                        }
                     })
+
 
                     .state('Generator', {
                         url: '/Generator',
                         templateUrl: 'components/Generator/Generator.html',
-                        controller: 'GeneratorController'
+                        controller: 'commonController',
+                        resolve: {
+                            'courseData': function (courseServices) {
+                                var stateName = Object.getOwnPropertyNames(this.includes);
+                                return courseServices.getCourse(stateName[1].toLowerCase());
+                            }
+                        }
                     })
 
 
                     .state('home', {
-                        // Use a url of '/' to set a states as the 'index'.
                         url: '/home',
                         templateUrl: 'components/home/home.html',
-                        controller: 'homeController'
+                        controller: 'homeController',
+                        resolve: {
+                            'courseData': function (courseServices) {
+                                var stateName = Object.getOwnPropertyNames(this.includes);
+                                return courseServices.getCourse(stateName[1].toLowerCase());
+                            }
+                        }
+                    });
 
-                    })
 
-                    .state('theme', {
-                        // Use a url of '/' to set a states as the 'index'.
-                        url: '/theme',
-                        templateUrl: 'components/theme/theme.html'
-
-                    })
-
-                    .state('components', {
-                        // Use a url of '/' to set a states as the 'index'.
-                        url: '/components',
-                        templateUrl: 'components/components/components.html',
-                        controller: 'ComponentsController'
-                    })
-
-                    .state('charts', {
-                        // Use a url of '/' to set a states as the 'index'.
-                        url: '/charts',
-                        templateUrl: 'components/charts/charts.html',
-                        controller: 'ChartsController'
-                    })
-                ;
             }
         ]);
-
-

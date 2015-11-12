@@ -13,44 +13,18 @@
 			<button class="btn btn-sm btn-primary pull-right fullscreen-btn" ng-click="fullscreen = !fullscreen"><span class="glyphicon glyphicon-resize-full" ></span></button>
 			<tabset>
 				<tab heading="Slides">
-					 <ng-pdf template-url="components/common/pdfViewer.html" canvasid="pdf" scale="1.2"></ng-pdf>
+					 <ng-pdf template-url="components/common/pdfViewer.html" canvasid="pdf" scale="0.9"></ng-pdf>
 				</tab>
-				<tab heading="Code Challange">
+				<tab heading="Code Exercise">
 					<div ng-include="'components/Routing/codeChallange.partial-view.html'"></div>
 				</tab>
 			</tabset>
 
 		</div>
 
-		<div class="col-md-3">
-
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<h3 class="panel-title"><span class="glyphicon glyphicon-facetime-video" > </span>  Navigate Video</h3>
-				</div>
-				<div class="panel-body">
-					<select angular-ripple="" class="form-control" name="videoSelect" id="videoSelect" ng-change="jumpVideo( data.videoSelect , 'videoTutorial') "
-					ng-model="data.videoSelect">
-						<option value="10">ui-router - 0:10</option>
-						<option value="237">ui-view - 3:56</option>
-						<option value="353">Ext. ui-router 1 - 5:50</option>
-						<option value="445">Ext. ui-router 2 - 7:25</option>
-				 </select>
-				</div>
-			</div>
-
-
-
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<h3 class="panel-title"><span class="glyphicon glyphicon-book" ></span>  Documentation</h3>
-				</div>
-				<div class="panel-body">
-					<a href="https://github.com/Appverse/generator-appverse-html5/" target="_blank" angular-ripple="" class="btn btn-default btn-block"></span>Repository</a>
-					<a href="https://github.com/Appverse/generator-appverse-html5/blob/master/README.md" target="_blank" angular-ripple="" class="btn btn-default btn-block"></span>Readme</a>
-				</div>
-			</div>
-
+		 <div class="col-md-3">
+			 <video-control ng-if="videoTime.length" ></video-control>
+			 <documentation-control ng-if="documentation.length"></documentation-control>
 		</div>
 	</div>
 </div>
