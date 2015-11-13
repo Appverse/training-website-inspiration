@@ -66,7 +66,4 @@
       appverseMobile: {},
       mobileBrowser: {}
     });
-    
-    
-    
   } ());
