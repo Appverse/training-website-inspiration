@@ -70,38 +70,3 @@
     
     
   } ());
-/*
-
-
-app.run(['$q', '$rootScope','$http', '$urlRouter',
-  function ($q, $rootScope, $http, $urlRouter) 
-  {
-    $http
-      .get("myJson.json")
-      .success(function(data)
-      {
-        angular.forEach(data, function (value, key) 
-        { 
-          var state = {
-            "url": value.url,
-            "parent" : value.parent,
-            "abstract": value.abstract,
-            "views": {}
-          };
-          
-          angular.forEach(value.views, function (view) 
-          {
-            state.views[view.name] = {
-              templateUrl : view.templateUrl,
-            };
-          });
-
-          $stateProviderRef.state(value.name, state);
-        });
-        // Configures $urlRouter's listener *after* your custom listener
-        
-        $urlRouter.sync();
-        $urlRouter.listen();
-      });
-}]);
-*/
