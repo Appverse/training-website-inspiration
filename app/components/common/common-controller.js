@@ -28,7 +28,6 @@ angular.module('App.Controllers')
 
 .controller('commonController', ['$scope', 'videoControl', 'courseData',
         function ($scope , videoControl, courseData) {
-        
         $scope.jumbo =  {
                 title : courseData.jumbo.title,
                 subtitle: courseData.jumbo.subtitle
