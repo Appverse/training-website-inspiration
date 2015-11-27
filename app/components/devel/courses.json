@@ -1,0 +1,153 @@
+[{
+    "name": "Directives",
+    "parent": "Appverse Web",
+    "metadata": {
+        "title": "Directives",
+        "tag": {
+            "level": "success",
+            "value": "has content"
+        },
+        "subtitle": "Overview over the most popular AngularJS built in Directives",
+        "imgURL": "https://cdn1.iconfinder.com/data/icons/mayssam/512/Coding-32.png",
+        "difficulty": 5
+    },
+    "contents": {
+        "video": {
+            "videoUrl": "/resources/courses/Appverse/Appverse%20Web/Directives/directives.mp4",
+            "videoTimes": [{
+                "time": 10,
+                "description": "ng-app - 0:10"
+            }, {
+                "time": 26,
+                "description": "ng-model - 0:26"
+            }, {
+                "time": 59,
+                "description": "ng-click - 0:59"
+            }, {
+                "time": 124,
+                "description": "ng-class - 2:04"
+            }, {
+                "time": 255,
+                "description": "ng-show/hide - 4:04"
+            }, {
+                "time": 357,
+                "description": "ng-switch - 5:59"
+            }, {
+                "time": 488,
+                "description": "ng-repeat - 8:08"
+            }]
+        },
+        "pdfUrl": "/resources/courses/Appverse/Appverse%20Web/Directives/directives-lesson-1.pdf",
+        "documentation": [{
+            "url": "https://appverse.gftlabs.com/git/users/roca/repos/training-repo-part1/browse?at=refs%2Ftags%2Fdirectives-step-1",
+            "description": "Repository"
+        }],
+        "partials": [{
+            "name": "Code Exercise",
+            "path": "/resources/courses/Appverse/Appverse%20Web/Directives/codeExercise.html"
+        }, {
+            "name": "Code Challenge",
+            "path": "/resources/courses/Appverse/Appverse%20Web/Directives/codeChallenge.html"
+        }]
+    }
+}, {
+    "name": "Generator",
+    "parent": "Appverse Web",
+    "metadata": {
+        "title": "Generator",
+        "subtitle": "Using Generator and tools",
+        "description": "The multi-platform mobile development framework enables developers to use HTML5, JavaScript, and CSS3 and to leverage native mobile functionalities to build apps from a common codebase. All major mobile platforms are supported",
+        "imgURL": "https://cdn1.iconfinder.com/data/icons/hawcons/32/700108-icon-73-wind-turbine-48.png",
+        "difficulty": 3
+    },
+    "contents": {
+        "video": {
+            "videoUrl": "/resources/courses/Appverse/Appverse%20Web/Generator/generatorRun.mp4",
+            "videoTimes": [{
+                "time": 10,
+                "description": "ng-app - 0:10"
+            }, {
+                "time": 26,
+                "description": "ng-model - 0:26"
+            }, {
+                "time": 59,
+                "description": "ng-click - 0:59"
+            }, {
+                "time": 124,
+                "description": "ng-class - 2:04"
+            }, {
+                "time": 255,
+                "description": "ng-show/hide - 4:04"
+            }, {
+                "time": 357,
+                "description": "ng-switch - 5:59"
+            }, {
+                "time": 488,
+                "description": "ng-repeat - 8:08"
+            }]
+        },
+        "pdfUrl": "/resources/courses/Appverse/Appverse%20Web/Generator/generator-lesson-0.pdf",
+        "documentation": [{
+            "url": "https://appverse.gftlabs.com/git/users/roca/repos/training-repo-part1/browse?at=refs%2Ftags%generator-step-1",
+            "description": "Repository"
+        }, {
+            "url": "https://appverse.gftlabs.com/git/users/roca/repos/training-repo-part1/browse?at=refs%2Ftags%generator-step-1",
+            "description": "Repository 2"
+        }],
+        "partials": [{
+            "name": "Tutorial",
+            "path": "/resources/courses/Appverse/Appverse%20Web/Generator/tutorial.html"
+        }, {
+            "name": "Code Challenge",
+            "path": "/resources/courses/Appverse/Appverse%20Web/Generator/codeChallenge.html"
+        }, {
+            "name": "Appverse Generator readme (in Markdown)",
+            "path": "/resources/courses/Appverse/Appverse%20Web/Generator/README.md",
+            "markdown": true
+        }]
+    }
+}, {
+    "name": "Routing",
+    "parent": "Appverse Web",
+    "metadata": {
+        "title": "Routing",
+        "subtitle": "ui.route and ui-view concepts and exercises with resolve and factories",
+        "description": "The multi-platform mobile development framework enables developers to use HTML5, JavaScript, and CSS3 and to leverage native mobile functionalities to build apps from a common codebase. All major mobile platforms are supported",
+        "imgURL": "https://cdn1.iconfinder.com/data/icons/mayssam/512/Location-32.png",
+        "difficulty": 3
+    },
+    "contents": {
+        "video": {
+            "videoUrl": "/resources/courses/Appverse/Appverse%20Web/Routing/routing.mp4",
+            "videoTimes": [{
+                "time": 10,
+                "description": "ng-app - 0:10"
+            }, {
+                "time": 26,
+                "description": "ng-model - 0:26"
+            }, {
+                "time": 59,
+                "description": "ng-click - 0:59"
+            }, {
+                "time": 124,
+                "description": "ng-class - 2:04"
+            }, {
+                "time": 255,
+                "description": "ng-show/hide - 4:04"
+            }, {
+                "time": 357,
+                "description": "ng-switch - 5:59"
+            }, {
+                "time": 488,
+                "description": "ng-repeat - 8:08"
+            }]
+        },
+        "partials": [{
+            "name": "Code Exercise",
+            "path": "/resources/courses/Appverse/Appverse%20Web/Routing/codeExercise.html"
+        }, {
+            "name": "Code Challenge",
+            "path": "/resources/courses/Appverse/Appverse%20Web/Routing/codeChallenge.html"
+        }]
+    }
+}]
