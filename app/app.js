@@ -30,13 +30,17 @@
         'hc.marked'
     ]).config(['markedProvider', '$sceDelegateProvider',
         function(markedProvider, $sceDelegateProvider) {
-            configureURLWhitelist($sceDelegateProvider);
+            //configureURLWhitelist($sceDelegateProvider);
             configureMarkdown(markedProvider);
         }
     ])
-        .run(function(editableOptions, $rootScope) {
+        .run(function($log, editableOptions, $rootScope, offlineService) {
             editableOptions.theme = 'bs3';
             $rootScope.fullscreen = false;
+
+            Notification.requestPermission(function(permission) {
+                offlineService.wakeServiceWorker();
+            });
         });
     //Appverse Configs
     AppInit.setConfig({
@@ -53,14 +57,14 @@
         mobileBrowser: {}
     });
 
-    function configureURLWhitelist($sceDelegateProvider) {
+    /*function configureURLWhitelist($sceDelegateProvider) {
         $sceDelegateProvider.resourceUrlWhitelist([
             // Allow same origin resource loads.
             'self',
             // Allow loading from our assets domain.  Notice the difference between * and **.
             'https://*.gftlabs.com/**'
         ]);
-    }
+    }*/
 
     function configureMarkdown(markedProvider) {
         markedProvider.setOptions({

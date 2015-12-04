@@ -23,20 +23,31 @@ function dbService($log, pouchDB, $window, $q) {
         trainingDB.destroy();
     }
 
-    function getDB() {
+    function getDB(localOnly) {
         if (!trainingDB) {
-            return createDB();
+            return createDB(localOnly);
         } else {
             return returnDB();
         }
     }
     //// Private functions
 
-    function createDB() {
+    function createDB(localOnly) {
+        if (localOnly) {
+            return createLocalDB()
+                .then(addViews)
+                .then(returnDB);
+        } else {
+            return createLocalDB()
+                .then(replicate)
+                .then(returnDB);
+        }
+
+    }
+
+    function createLocalDB() {
         trainingDB = pouchDB('training');
-        return addViews()
-            //.then(replicate)
-            .then(returnDB);
+        return returnDB();
     }
 
     function returnDB() {
@@ -44,7 +55,7 @@ function dbService($log, pouchDB, $window, $q) {
     }
 
     function replicate() {
-        return trainingDB.replicate.to('http://localhost:5984/training').$promise;
+        return trainingDB.replicate.from('http://localhost:5984/training').$promise;
     }
 
     function addViews() {

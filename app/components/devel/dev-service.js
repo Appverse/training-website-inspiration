@@ -25,10 +25,15 @@ function devService($log, $q, $http, $window, dbService, courseService, Course) 
         });
     }
 
-    function creatStubCurriculum() {
-        return createAreas()
-            .then(createUnits)
-            .then(createCourses);
+    function creatStubCurriculum(fromLocal) {
+        if (fromLocal) {
+            return dbService.getDB(fromLocal)
+                .then(createAreas)
+                .then(createUnits)
+                .then(createCourses);
+        } else {
+            return dbService.getDB(false);
+        }
     }
 
     //// Private functions

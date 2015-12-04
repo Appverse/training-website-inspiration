@@ -5,6 +5,7 @@ angular
     .directive('jumbotron', jumbotron)
     .directive('breadcrumbs', breadcrumbs)
     .directive('videoControl', videoControl)
+    .directive('courseContents', courseContents)
     .directive('documentationControl', documentationControl);
 
 function breadcrumbs() {
@@ -37,6 +38,16 @@ function videoControl() {
         ],
 
         templateUrl: 'components/course/directives/video-control.html',
+    };
+}
+
+function courseContents() {
+    return {
+        restrict: 'E',
+        scope: {
+            course: '='
+        },
+        templateUrl: 'components/course/directives/course-contents.html',
     };
 }
 

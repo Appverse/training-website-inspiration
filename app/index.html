@@ -24,6 +24,8 @@
     <link rel="stylesheet" type="text/css" href="bower_components/angularjs-slider/dist/rzslider.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/selectize/dist/css/selectize.css">
     <link rel="stylesheet" type="text/css" href="bower_components/angular-chart.js/dist/angular-chart.css">
+    <link rel="stylesheet" href="bower_components/video.js/dist/video.min.js">
+    <link rel="stylesheet" href="bower_components/highlightjs/styles/default.css">
     <!-- endbuild -->
 
     <!-- build:css styles/css/styles.css -->
@@ -33,8 +35,6 @@
     <link rel="stylesheet" href="styles/css/main.css">
     <link rel="stylesheet" href="styles/css/home.css">
     <!-- endbuild -->
-
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/default.min.css">
 </head>
 
 <!--Include the module with the app scope-->
@@ -93,8 +93,9 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-
-                <li><a href="#contact"><i class="glyphicon glyphicon-cog"></i> </a></li>
+                 <li data-ng-class="{ active: $state.includes(&apos;admin&apos;) }">
+                    <a angular-ripple="" ui-sref="admin.create"><i class="glyphicon glyphicon-cog"></i></a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -125,13 +126,14 @@
      <script src="bower_components/angularjs-slider/dist/rzslider.min.js"></script>
      <script src="bower_components/angular-resize/dist/angular-resize.min.js"></script>
      <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
      <script src="bower_components/marked/lib/marked.js"></script>
      <script src="bower_components/angular-marked/dist/angular-marked.js"></script>
      <script src="bower_components/Chart.js/Chart.min.js"></script>
      <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
      <script src="bower_components/pouchdb/dist/pouchdb.min.js"></script>
      <script src="bower_components/angular-pouchdb/angular-pouchdb.min.js"></script>
+     <script src="bower_components/video.js/dist/video.min.js"></script>
+     <script src="bower_components/highlightjs/highlight.pack.min.js"></script>
      <script src="app.js"></script>
      <script src="states/app-states.js"></script>
      <script src="bower_components/angular-cache/dist/angular-cache.min.js"></script>
@@ -153,13 +155,14 @@
      <script src="bower_components/appverse-web-html5-core/dist/appverse-translate/appverse-translate.min.js"></script>
      <!-- TRAINING COMPONENTS-->
      <script src="components/common/db-service.js"></script>
+     <script src="components/common/offline-service.js"></script>
      <script src="components/common/state-service.js"></script>
      <script src="components/course/course-service.js"></script>
      <script src="components/course/course-model.js"></script>
      <script src="components/course/course-controller.js"></script>
      <script src="components/course/directives/directives.js"></script>
      <script src="components/home/home-controller.js"></script>
-     <script src="components/common/common-controller.js"></script>
+     <script src="components/admin/admin-controller.js"></script>
      <script src="components/common/videocontrol-factory.js"></script>
 
      <script src="components/devel/dev-service.js"></script>

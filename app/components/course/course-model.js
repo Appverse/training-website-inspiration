@@ -13,7 +13,7 @@ function CourseModel() {
         this.contents = contents;
     }
     // Methods
-    Course.prototype.calculatePath = function calculatePath(includeSelf) {
+    Course.prototype.calculatePath = function (includeSelf) {
         var course = this;
         var path = '';
         if (course) {
@@ -28,6 +28,26 @@ function CourseModel() {
             }
         }
         return path;
+    };
+
+    Course.prototype.getResources = function () {
+        var course = this;
+        var resources = [];
+        resources.push(course.metadata.imgURL);
+        if (course.contents) {
+            if (course.contents.video && course.contents.video.videoUrl) {
+                resources.push(course.contents.video.videoUrl);
+            }
+            if (course.contents.pdfUrl) {
+                resources.push(course.contents.pdfUrl);
+            }
+            if (course.contents.partials) {
+                for (var i = course.contents.partials.length - 1; i >= 0; i--) {
+                    resources.push(course.contents.partials[i].path);
+                }
+            }
+        }
+        return resources;
     };
 
     return Course;

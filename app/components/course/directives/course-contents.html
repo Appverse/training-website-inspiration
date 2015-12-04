@@ -1,0 +1,31 @@
+
+<div class="container  course-container " ng-if="course.contents" ng-class="{'fullscreen': fullscreen}">
+    <div class="row">
+        <div class="{{course.contents.video? 'col-md-9' : 'col-md-12'}}">
+            <div ng-show="course.contents.video">
+                <div   class="embed-responsive embed-responsive-16by9">
+                    <video id="videoTutorial" ng-src="{{course.contents.video.videoUrl}}" controls>
+                        Your browser does not support the <code>video</code> element.
+                    </video>
+                </div>
+                <hr>
+                <button class="btn btn-sm btn-primary pull-right fullscreen-btn" ng-click="fullscreen = !fullscreen"><span class="glyphicon glyphicon-resize-full" ></span></button>
+            </div>
+            <tabset>
+                <tab  ng-if="pdfUrl" heading="Slides">
+                    <ng-pdf template-url="components/common/pdfViewer.html" canvasid="pdf" scale="page-fit"></ng-pdf>
+                </tab>
+                <tab ng-if="course.contents.partials" ng-repeat="partial in course.contents.partials" heading="{{partial.name}}">
+                    <div ng-if="!partial.markdown" ng-include="partial.path"></div>
+                    <div ng-if="partial.markdown" marked src="partial.path"></div>
+                </tab>
+            </tabset>
+
+        </div>
+
+        <div class="col-md-3" ng-if="course.contents.video">
+            <video-control video="course.contents.video" ></video-control>
+            <documentation-control documents="course.contents.documentation"></documentation-control>
+        </div>
+    </div>
+</div>

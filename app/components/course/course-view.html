@@ -1,37 +1,7 @@
 <jumbotron></jumbotron>
 <breadcrumbs></breadcrumbs>
+<course-contents course="course"></course-contents>
 
-
-<div class="container  course-container " ng-if="course.contents" ng-class="{'fullscreen': fullscreen}">
-    <div class="row">
-        <div class="{{course.contents.video? 'col-md-9' : 'col-md-12'}}">
-            <div ng-show="course.contents.video">
-                <div   class="embed-responsive embed-responsive-16by9">
-                    <video id="videoTutorial" ng-src="{{course.contents.video.videoUrl}}" controls autoplay="{{is_autoplay}}">
-                        Your browser does not support the <code>video</code> element.
-                    </video>
-                </div>
-                <hr>
-                <button class="btn btn-sm btn-primary pull-right fullscreen-btn" ng-click="fullscreen = !fullscreen"><span class="glyphicon glyphicon-resize-full" ></span></button>
-            </div>
-            <tabset>
-            <tab  ng-if="pdfUrl" heading="Slides">
-                    <ng-pdf template-url="components/common/pdfViewer.html" canvasid="pdf" scale="page-fit"></ng-pdf>
-                </tab>
-                <tab ng-if="course.contents.partials" ng-repeat="partial in course.contents.partials" heading="{{partial.name}}">
-                    <div ng-if="!partial.markdown" ng-include="partial.path"></div>
-                    <div ng-if="partial.markdown" marked src="partial.path"></div>
-                </tab>
-            </tabset>
-
-        </div>
-
-        <div class="col-md-3" ng-if="course.contents.video">
-            <video-control video="course.contents.video" ></video-control>
-            <documentation-control documents="course.contents.documentation"></documentation-control>
-        </div>
-    </div>
-</div>
 
 <div class="container" scrolly-scroll>
     <div class="row">
@@ -40,8 +10,14 @@
                 <div class="col-md-12">
                     <div class="col-sm-6 col-md-3 " ng-repeat="child in children">
                         <div class="thumbnail">
+                            <div ng-if="child.metadata.tag" class="ribbon {{child.metadata.tag.level}}"><span>{{child.metadata.tag.value}}</span></div>
                             <div class="row">
                                 <div class="col-md-12 col-xs-12">
+                                    <div class="offline-status">
+                                        <img ng-click="cacheCourse($index)"
+                                        ng-class="child.downloading? 'bounce' : ''"
+                                        ng-src="{{!child.cached? 'https://cdn0.iconfinder.com/data/icons/good-weather-1/96/weather_icons-69-32.png' : 'https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_cloud_off_48px-20.png'}}">
+                                    </div>
                                     <h4 class="text-center title">
                                         {{child.metadata.title}}
                                     </h4>
@@ -50,9 +26,9 @@
                             </div>
                             <img class="img-responsive" ng-src="{{child.metadata.imgURL}}">
                             <div class="caption">
-                                <span ng-if="child.metadata.tag" class="pull-right label label-{{child.metadata.tag.level}}">{{child.metadata.tag.value}}</span>
                                 <div class="row">
                                     <div class="col-md-12 col-xs-12">
+
                                         <h4>{{child.metadata.subtitle}}</h4>
                                     </div>
                                 </div>
@@ -64,6 +40,7 @@
                                     <a class="btn btn-primary btn-block" ng-disabled="!{{child.active}}" ui-sref="{{child.path + child.name}}">start</a>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>

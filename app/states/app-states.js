@@ -35,6 +35,19 @@ angular.module('webApp')
                                 return courseService.listChildren();
                             }
                         }
+                    })
+                    .state('admin', {
+                        url: '/admin',
+                        templateUrl: 'components/admin/admin.html',
+                        controller: 'adminController'
+                    })
+                    .state('admin.create', {
+                        url: '/create',
+                        templateUrl: 'components/admin/admin-create.html'
+                    })
+                    .state('admin.preview', {
+                        url: '/preview',
+                        templateUrl: 'components/course/course-view.html'
                     });
 
                 //Add a $state.next property so state resolvers can know what is being loaded
@@ -50,20 +63,27 @@ angular.module('webApp')
         $rootScope.loading = true;
 
         devService
-            .creatStubCurriculum()
+            .creatStubCurriculum(true)
             .then(courseService.listAll)
+            .then(storeGlobalState)
             .then(stateService.createStatesFromCourses)
             .then(removeLoader)
             .catch(function(err) {
                 if (err.status !== 409) {
                     $log.error(err);
-                    // ignore if doc already exists
                 }
+                // ignore pouchDB conflicts
                 return $q.when(true);
             });
 
         function removeLoader() {
             $rootScope.loading = false;
             return $q.when(true);
+        }
+
+        function storeGlobalState(courses) {
+            $rootScope.state = {};
+            $rootScope.state.courses = courses;
+            return $q.when(courses);
         }
     });

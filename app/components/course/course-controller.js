@@ -3,7 +3,7 @@
 angular.module('App.Controllers')
 
 .controller('courseController',
-    function($log, $scope, course, children) {
+    function($log, $scope, offlineService, course, children) {
         var vm = this;
         $scope.course = course;
         $scope.pdfUrl = course.contents && course.contents.pdfUrl;
@@ -13,6 +13,19 @@ angular.module('App.Controllers')
         $scope.children = children;
         $scope.getNumber = function(num) {
             return new Array(num);
+        };
+
+        $scope.cacheCourse = function(index) {
+            var courseToCache = children[index];
+            courseToCache.downloading = true;
+            offlineService
+                .cacheResources(courseToCache.name, courseToCache.getResources())
+                .then(function(result) {
+                    $log.info(result);
+                    courseToCache.cached = true;
+                    courseToCache.downloading = false;
+
+                });
         };
 
         function getBreadcrumbs(path) {
