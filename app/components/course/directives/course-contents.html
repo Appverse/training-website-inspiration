@@ -16,8 +16,9 @@
                     <ng-pdf template-url="components/common/pdfViewer.html" canvasid="pdf" scale="page-fit"></ng-pdf>
                 </tab>
                 <tab ng-if="course.contents.partials" ng-repeat="partial in course.contents.partials" heading="{{partial.name}}">
-                    <div ng-if="!partial.markdown" ng-include="partial.path"></div>
-                    <div ng-if="partial.markdown" marked src="partial.path"></div>
+                    <div ng-if="!partial.markdown" ng-include="partial.url"></div>
+                    {{partial}}
+                    <div ng-if="partial.markdown" marked src="partial.url"></div>
                 </tab>
             </tabset>
 

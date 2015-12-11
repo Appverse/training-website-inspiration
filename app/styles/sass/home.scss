@@ -63,6 +63,32 @@
 
 .jumbotron {
     margin-bottom: 0;
+    z-index: 1000;
+    transition: all 0.4s ease;
+    width: 100%;
+}
+
+.shrink {
+    .jumbotron{
+        height: 50px;
+        padding: 12px 0;
+        position: fixed;
+        top: 60px;
+
+        h1 {
+            font-size: 20px;
+            display: inline;
+        }
+
+        p {
+            font-size: 15px;
+            display: inline;
+            float: right;
+        }
+    }
+    .course {
+            margin-top: 230px;
+    }
 }
 
 
@@ -139,21 +165,30 @@
 
 /* Icon Hang */
 @keyframes bounce {
-       from{ -webkit-transform: translate(0px,0px); }
-       to { -webkit-transform: translate(0px,10px); }
-      }
+ from{ -webkit-transform: translate(0px,0px); }
+ to { -webkit-transform: translate(0px,10px); }
+}
 
 .bounce{
     animation-name: bounce;
-        animation-duration:1s;
-        animation-direction:alternate;
-        animation-timing-function:cubic-bezier(0.55, 0.06, 0.68, 0.19);
-        animation-delay:0s;
-        animation-iteration-count:infinite;
+    animation-duration:1s;
+    animation-direction:alternate;
+    animation-timing-function:cubic-bezier(0.55, 0.06, 0.68, 0.19);
+    animation-delay:0s;
+    animation-iteration-count:infinite;
 }
 
 .offline-status {
     width: 32px;
     float: left;
     text-align: center;
+}
+
+#drop-zone {
+    border: 1px grey dashed;
+    text-align: center;
+
+    .dragging {
+        border-style: solid;
+    }
 }

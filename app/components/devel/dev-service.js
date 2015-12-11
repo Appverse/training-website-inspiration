@@ -20,20 +20,18 @@ function devService($log, $q, $http, $window, dbService, courseService, Course) 
     function init() {
         PouchDB.debug.enable('*');
         $window.addEventListener('beforeunload', function() {
-            console.log('destroying DB');
-            dbService.destroy();
-        });
+            new PouchDB('training').destroy();
+        }, false);
     }
 
     function creatStubCurriculum(fromLocal) {
+        var promise = dbService.getDB(fromLocal);
         if (fromLocal) {
-            return dbService.getDB(fromLocal)
-                .then(createAreas)
+            promise = promise.then(createAreas)
                 .then(createUnits)
                 .then(createCourses);
-        } else {
-            return dbService.getDB(false);
         }
+        return promise;
     }
 
     //// Private functions

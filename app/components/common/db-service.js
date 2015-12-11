@@ -11,17 +11,12 @@ function dbService($log, pouchDB, $window, $q) {
 
     //// Interface
     var service = {
-        destroy: destroy,
         getDB: getDB
     };
 
     return service;
 
     //// Public functions
-
-    function destroy() {
-        trainingDB.destroy();
-    }
 
     function getDB(localOnly) {
         if (!trainingDB) {

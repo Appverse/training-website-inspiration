@@ -30,13 +30,14 @@
         'hc.marked'
     ]).config(['markedProvider', '$sceDelegateProvider',
         function(markedProvider, $sceDelegateProvider) {
-            //configureURLWhitelist($sceDelegateProvider);
+            configureURLWhitelist($sceDelegateProvider);
             configureMarkdown(markedProvider);
         }
     ])
         .run(function($log, editableOptions, $rootScope, offlineService) {
             editableOptions.theme = 'bs3';
             $rootScope.fullscreen = false;
+            makeHeadersShrinkable();
 
             Notification.requestPermission(function(permission) {
                 offlineService.wakeServiceWorker();
@@ -57,14 +58,22 @@
         mobileBrowser: {}
     });
 
-    /*function configureURLWhitelist($sceDelegateProvider) {
-        $sceDelegateProvider.resourceUrlWhitelist([
-            // Allow same origin resource loads.
-            'self',
-            // Allow loading from our assets domain.  Notice the difference between * and **.
-            'https://*.gftlabs.com/**'
-        ]);
-    }*/
+    function configureURLWhitelist($sceDelegateProvider) {
+        $sceDelegateProvider.resourceUrlWhitelist(['**']);
+    }
+
+    function makeHeadersShrinkable() {
+        var $document = $(document);
+        var $body = $('body');
+        $(window).scroll(function() {
+            //console.log($(document).scrollTop());
+            if ($document.scrollTop() > 180) {
+                $body.addClass('shrink');
+            } else {
+                $body.removeClass('shrink');
+            }
+        });
+    }
 
     function configureMarkdown(markedProvider) {
         markedProvider.setOptions({

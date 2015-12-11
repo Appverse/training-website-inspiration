@@ -47,7 +47,7 @@ angular.module('webApp')
                     })
                     .state('admin.preview', {
                         url: '/preview',
-                        templateUrl: 'components/course/course-view.html'
+                        templateUrl: 'components/admin/admin-preview.html'
                     });
 
                 //Add a $state.next property so state resolvers can know what is being loaded
@@ -62,8 +62,9 @@ angular.module('webApp')
     .run(function($log, $q, $rootScope, courseService, devService, stateService) {
         $rootScope.loading = true;
 
+        var createDatabaseFromJSONStubs = true;
         devService
-            .creatStubCurriculum(true)
+            .creatStubCurriculum(createDatabaseFromJSONStubs)
             .then(courseService.listAll)
             .then(storeGlobalState)
             .then(stateService.createStatesFromCourses)

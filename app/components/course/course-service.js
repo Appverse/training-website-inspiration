@@ -32,9 +32,7 @@ function courseService($log, $q, dbService, Course) {
                 console.log(err);
                 return $q.reject('Couldn\'t fetch child courses');
             })
-            .then(function(result) {
-                return $q.when(buildFromFetch(result));
-            });
+            .then(buildFromFetch);
     }
 
     function listChildren(courseOrCourseName) {
@@ -51,12 +49,12 @@ function courseService($log, $q, dbService, Course) {
                     });
                 });
             })
-           /* .catch(function(err) {
+            /* .catch(function(err) {
                 console.log(err);
                 return $q.reject('Couldn\'t fetch child courses');
             })*/
             .then(function(result) {
-                return $q.when(buildFromFetch(result, parent));
+                return buildFromFetch(result, parent);
             });
 
         function resolveCourse(courseOrCourseName) {
@@ -79,7 +77,9 @@ function courseService($log, $q, dbService, Course) {
                     $log.error('Couldn\'t create/update course', err);
                 } else {
                     $log.warn('conflict while creating/updating course: ' + courseForDB.name, err);
-                    return $q.when({id: courseForDB._id});
+                    return $q.when({
+                        id: courseForDB._id
+                    });
                 }
             })
             .then(function(result) {
@@ -99,9 +99,7 @@ function courseService($log, $q, dbService, Course) {
                 }
                 return $q.when(true);
             })
-            .then(function(result) {
-                return buildFromFetch(result);
-            });
+            .then(buildFromFetch);
     }
 
     function createCourse(course) {
@@ -112,7 +110,11 @@ function courseService($log, $q, dbService, Course) {
     }
 
     function getParent(course) {
-        var fetchParent = Boolean(course && course.parent && !course.parent.name);
+        if (course.path) {
+            var parents = course.path.split('.');
+            course.parent = parents[parents.length-2];
+        }
+        var fetchParent = Boolean(course.parent && !course.parent.name);
         return fetchParent ? getCourse(course.parent) : $q.when(course.parent);
     }
 

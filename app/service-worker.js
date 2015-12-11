@@ -14,7 +14,7 @@ self.addEventListener('activate', function(event) {
 self.addEventListener('message', function(event) {
     switch (event.data.command) {
         case 'add':
-            showNotification('Making "' + event.data.key + '" available offline');
+            showNotification('Making "' + event.data.key + '" available offline.\nCaching ' + event.data.resources.length + ' resources');
             caches
                 .open(event.data.key)
                 .then(function(cache) {
@@ -36,8 +36,7 @@ self.addEventListener('message', function(event) {
 });
 
 
-self.addEventListener('fetch', function(event) {
-    event.respondWith(
+/*    event.respondWith(
         caches.match(event.request)
         .then(function(response) {
             if (response) {
@@ -51,7 +50,7 @@ self.addEventListener('fetch', function(event) {
             return event.request.mode === 'navigate' ?
                 fetch(event.request) : fetch(event.request, {mode: 'no-cors'});
         }));
-});
+});*/
 
 
 

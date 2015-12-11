@@ -1,7 +1,5 @@
 
-<div class="container" scrolly-scroll>
-<form class="form-horizontal" editable-form id="courseForm" ng-submit="preview()">
-        <h1>Administration</h1>
+    <form class="form-horizontal" editable-form id="courseForm">
         <fieldset class="form-group">
             <label for="courseTitle"  class="col-sm-2 control-label"><b>Title</b></label>
             <div class="col-sm-4">
@@ -10,17 +8,17 @@
             <label for="courseName"  class="col-sm-2 control-label"><b>Key / URL</b></label>
             <div class="col-sm-4">
                 <div class="input-group">
-                    <span class="input-group-addon btn btn-default glyphicon glyphicon-link active" ng-class="courseKeyIsConstrained? 'active':''" ng-click="toggleKeyConstraint()"></span>
+                    <span angular-ripple class="input-group-addon btn btn-default glyphicon glyphicon-link active" ng-class="courseKeyIsConstrained? 'active':''" ng-click="toggleKeyConstraint()"></span>
                     <input id="courseName" type="text" class="form-control" placeholder="Enter course URL"  ng-model="course.name"   ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/">
                 </div>
             </div>
         </fieldset>
         <fieldset class="form-group">
-            <label for="courseParent" class="col-sm-2 control-label">Course track</label>
+            <label for="coursePath" class="col-sm-2 control-label">Course track</label>
             <div class="col-sm-10">
-                <select id="courseParent" class="form-control"
-                ng-options="parent.id as parent.description for parent in parents"
-                ng-model="course.parent">
+                <select id="coursePath" class="form-control"
+                ng-options="path.id as path.description for path in paths"
+                ng-model="course.path">
                 <option ></option>
             </select>
         </div>
@@ -53,7 +51,7 @@
     </fieldset>
 
 
-    <fieldset class="form-group fade-in" ng-if="course.parent" >
+    <fieldset class="form-group fade-in" ng-if="course.path" >
         <tabset>
             <tab heading="Video">
                 <div class="row">
@@ -90,7 +88,7 @@
                         <input id="courseDocumentationURL" class="form-control" placeholder="Document URL"  ng-model="temp.newDocumentURL">
                     </div>
                     <div class="col-md-1">
-                        <span class="btn btn-default glyphicon glyphicon-plus" ng-click="addDocument()"></span>
+                        <span angular-ripple class="btn btn-default glyphicon glyphicon-plus" ng-click="addDocument()"></span>
                     </div>
                 </div>
 
@@ -106,7 +104,7 @@
                     <tr ng-repeat="document in course.contents.documentation">
                         <td>{{document.name}}</td>
                         <td>{{document.url}}</td>
-                        <td><span ng-click="removeDocument($index)" class="btn btn-xs btn-default glyphicon glyphicon-trash pull-right"></span></td>
+                        <td><span angular-ripple ng-click="removeDocument($index)" class="btn btn-xs btn-default glyphicon glyphicon-trash pull-right"></span></td>
                     </tr>
                 </table>
             </tab>
@@ -116,11 +114,16 @@
                     <div class="col-md-3">
                         <input id="coursepartialName" class="form-control" placeholder="Partial name"  ng-model="temp.newPartialName">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <input id="coursepartialURL" class="form-control" placeholder="Partial URL"  ng-model="temp.newPartialURL">
                     </div>
+                    <div class="col-md-2 checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="temp.newPartialIsMarkdown"><span class="checkbox-material"><span class="check"></span></span> MarkDown
+                        </label>
+                    </div>
                     <div class="col-md-1">
-                        <span class="btn btn-default glyphicon glyphicon-plus" ng-click="addPartial()"></span>
+                        <span angular-ripple class="btn btn-default glyphicon glyphicon-plus" ng-click="addPartial()"></span>
                     </div>
                 </div>
                 <div class="row">
@@ -128,33 +131,30 @@
                 </div>
                 <div class="row">
                     <label for="coursepartial" class="col-sm-2 control-label">Upload partials</label>
-                    <div class="col-md-4">
-                        <div id="holder" class="well text-center">Drop files here to upload partials</div>
+                    <div class="col-md-10">
+                        <div id="drop-zone" class="well">Drop files here or click to upload partials</div>
+                        <input id="drop-zone-input" type="file" multiple="multiple" class="hidden">
                     </div>
                 </div>
                 <table class="table table-striped table-condensed" ng-if="course.contents.partials.length">
                     <tr>
                         <th>Name</th>
                         <th>URL</th>
+                        <th>Markdown</th>
                         <th></th>
                     </tr>
                     <tr ng-repeat="partial in course.contents.partials">
                         <td>{{partial.name}}</td>
-                        <td ng-if="partial.url">{{partial.url}}</td>
-                        <td ng-if="!partial.url"><em>Embedded</em></td>
-                        <td><span ng-click="removepartial($index)" class="btn btn-xs btn-default glyphicon glyphicon-trash pull-right"></span></td>
+                        <td ng-if="!partial.embedded">{{partial.url}}</td>
+                        <td ng-if="partial.embedded"><em>Embedded</em></td>
+                        <td><span class="glyphicon" ng-class="partial.markdown? 'glyphicon-ok' : ''"></span></td>
+                        <td><span ng-click="removePartial($index)" class="btn btn-xs btn-default glyphicon glyphicon-trash pull-right"></span></td>
                     </tr>
                 </table>
             </tab>
         </tabset>
     </fieldset>
-    <fieldset class="form-group">
-        <div class="pull-right">
-            <button type="submit" class="btn btn-default">preview {{course.parent? 'course':'area'}}</button>
-        </div>
-    </fieldset>
 </form>
 <br />
 
 <p>{{course.contents.partials}}</p>
-</div>

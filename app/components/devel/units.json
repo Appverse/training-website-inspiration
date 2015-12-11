@@ -15,7 +15,7 @@
     "contents": {
         "partials": [{
             "name": "Before starting",
-            "path": "/resources/courses/Appverse/Appverse%20Web/before-starting.md",
+            "url": "/resources/courses/Appverse/Appverse%20Web/before-starting.md",
             "markdown": true
         }]
     }

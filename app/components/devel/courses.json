@@ -44,10 +44,10 @@
         }],
         "partials": [{
             "name": "Code Exercise",
-            "path": "/resources/courses/Appverse/Appverse%20Web/Directives/codeExercise.html"
+            "url": "/resources/courses/Appverse/Appverse%20Web/Directives/codeExercise.html"
         }, {
             "name": "Code Challenge",
-            "path": "/resources/courses/Appverse/Appverse%20Web/Directives/codeChallenge.html"
+            "url": "/resources/courses/Appverse/Appverse%20Web/Directives/codeChallenge.html"
         }]
     }
 }, {
@@ -96,13 +96,13 @@
         }],
         "partials": [{
             "name": "Tutorial",
-            "path": "/resources/courses/Appverse/Appverse%20Web/Generator/tutorial.html"
+            "url": "/resources/courses/Appverse/Appverse%20Web/Generator/tutorial.html"
         }, {
             "name": "Code Challenge",
-            "path": "/resources/courses/Appverse/Appverse%20Web/Generator/codeChallenge.html"
+            "url": "/resources/courses/Appverse/Appverse%20Web/Generator/codeChallenge.html"
         }, {
             "name": "Appverse Generator readme (in Markdown)",
-            "path": "/resources/courses/Appverse/Appverse%20Web/Generator/README.md",
+            "url": "/resources/courses/Appverse/Appverse%20Web/Generator/README.md",
             "markdown": true
         }]
     }
@@ -144,10 +144,10 @@
         },
         "partials": [{
             "name": "Code Exercise",
-            "path": "/resources/courses/Appverse/Appverse%20Web/Routing/codeExercise.html"
+            "url": "/resources/courses/Appverse/Appverse%20Web/Routing/codeExercise.html"
         }, {
             "name": "Code Challenge",
-            "path": "/resources/courses/Appverse/Appverse%20Web/Routing/codeChallenge.html"
+            "url": "/resources/courses/Appverse/Appverse%20Web/Routing/codeChallenge.html"
         }]
     }
 }]

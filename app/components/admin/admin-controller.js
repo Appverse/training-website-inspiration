@@ -5,40 +5,17 @@ angular.module('App.Controllers')
 .controller('adminController',
     function($log, $q, $timeout, $state, $scope, $rootScope, courseService, Course) {
 
+        var inPreviewMode = false;
         $scope.course = new Course();
+        $scope.children = [$scope.course];
         $scope.courseKeyIsConstrained = true;
-        $scope.parents = listParents();
+        $scope.paths = listPaths();
 
-        $scope.gridOptions = {
-            rowHeight: 60,
-            headerRowHeight: 48,
-            data: 'course.contents.partials',
-            filterOptions: {},
-            enableRowSelection: false,
-            showFooter: true,
-            columnDefs: [{
-                field: 'index',
-                displayName: '#',
-                width: 40
-            }, {
-                field: 'name',
-                cellTemplate: '<div class="ngCellText" ng-class="col.colIndex()"><span ng-cell-text editable-text="row.entity[col.field]">{{row.entity[col.field]}}</span></div>'
-            }, {
-                displayName: '',
-                cellTemplate: '<div class="ngCellText" ng-class="col.colIndex()"><span ng-cell-text><button ng-click="deleteUser(row.entity)" class="btn btn-xs btn-danger glyphicon glyphicon-trash"></button></span></div>',
-                sortable: false,
-                width: 80
-            }],
-            footerTemplate: '<div id="holder" class="well text-center">Drop files here to upload partials</div>'
-        };
+        $scope.$on('$stateChangeSuccess', setupDropZone);
 
-        $scope.sliderOptions = {
-            floor: 0,
-            ceil: 450
-        };
-
-        $scope.addCourse = function() {
-
+        $scope.create = function() {
+            $scope.course.parent
+            courseService.createCourse($scope.course);
         };
 
         $scope.updateCourseName = function() {
@@ -52,8 +29,8 @@ angular.module('App.Controllers')
             $scope.updateCourseName();
         };
 
-        function listParents() {
-            var parents = $rootScope.state.courses
+        function listPaths() {
+            var paths = $rootScope.state.courses
                 .map(function(course) {
                     return course.calculatePath(true);
                 })
@@ -64,69 +41,12 @@ angular.module('App.Controllers')
                         description: pettifyPath(path)
                     };
                 });
-            return parents;
+            return paths;
 
             function pettifyPath(path) {
                 return path.substring(0, path.length - 1).replace(/\./g, ' -> ');
             }
         }
-
-
-        var $courseFrom = $('#courseForm');
-        $courseFrom.on('dragover', '#holder', function() {
-            this.className = 'well ';
-            return false;
-        });
-        $courseFrom.on('dragend', '#holder', function() {
-            this.className = 'well ';
-            return false;
-        });
-
-        $courseFrom.on('drop', '#holder', function(e) {
-            e = e.originalEvent;
-            var partials = [],
-                promises = [],
-                files = e.dataTransfer.files;
-            document.body.style.cursor = 'wait';
-            this.className = 'well ';
-            e.preventDefault();
-            $scope.course.contents = $scope.course.contents || {};
-            $scope.course.contents.partials = $scope.course.contents.partials || [];
-            var file;
-            for (var i = 0; i < files.length; i++) {
-                file = files[i];
-                console.log(files[i].name + '.type: ' + file.type);
-                if (!file.type && !file.name.match(/.*md$/)) {
-                    continue;
-                } else if (file.type && !file.type.match(/^text\/.*/)) {
-                    continue;
-                }
-                promises.push(processFile(file));
-            }
-
-            function processFile(file) {
-                var deferred = $q.defer();
-                var name = file.name;
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    partials.push({
-                        index: partials.length,
-                        name: file.name,
-                        path: e.target.result
-                    });
-                    deferred.resolve();
-                };
-                reader.readAsDataURL(file);
-                return deferred.promise;
-            }
-            $q.all(promises).then(function() {
-                $timeout(function() {
-                    $scope.course.contents.partials = $scope.course.contents.partials.concat(partials);
-                    document.body.style.cursor = '';
-                }, 0);
-            });
-            return false;
-        });
 
         $scope.temp = {
             newDocumentName: '',
@@ -157,19 +77,115 @@ angular.module('App.Controllers')
                 $scope.course.contents.partials = $scope.course.contents.partials || [];
                 $scope.course.contents.partials.push({
                     name: $scope.temp.newPartialName,
-                    url: $scope.temp.newPartialURL
+                    url: $scope.temp.newPartialURL,
+                    markdown: $scope.temp.newPartialIsMarkdown
                 });
                 $scope.temp.newPartialName = '';
                 $scope.temp.newPartialURL = '';
+                $scope.temp.newPartialIsMarkdown = false;
             }
         };
 
         $scope.removePartial = function(index) {
-            $scope.course.contents.partials.splice(index);
+            $scope.course.contents.partials.splice(index, 1);
         };
 
-        $scope.preview = function (){
-            $state.go('admin.preview');
+        $scope.togglePreview = function() {
+            if (inPreviewMode) {
+                $state.go('admin.create');
+            } else {
+                $state.go('admin.preview');
+            }
+
+            inPreviewMode = !inPreviewMode;
         };
+
+
+        function setupDropZone() {
+            var $courseFrom = $('#adminContainer');
+
+            $courseFrom.on('click', '#drop-zone', function() {
+                $(this).siblings('#drop-zone-input').click();
+            });
+
+            $courseFrom.on('dragover', '#drop-zone', function() {
+                this.className = 'well ';
+                return false;
+            });
+
+            $courseFrom.on('dragend', '#drop-zone', function() {
+                this.className = 'well ';
+                return false;
+            });
+
+            $courseFrom.on('drop', '#drop-zone', function(e) {
+                e = e.originalEvent;
+                document.body.style.cursor = 'wait';
+                processFiles(e.dataTransfer.files);
+                this.className = 'well ';
+                e.preventDefault();
+                return false;
+            });
+
+            $courseFrom.on('change', '#drop-zone-input', function(event) {
+                processFiles(this.files);
+            });
+
+            function processFiles(files) {
+                var partials = [],
+                    promises = [];
+                $scope.course.contents = $scope.course.contents || {};
+                $scope.course.contents.partials = $scope.course.contents.partials || [];
+                var file;
+                var isMarkdown = false;
+                for (var i = 0; i < files.length; i++) {
+                    file = files[i];
+                    console.log(files[i].name + '.type: ' + file.type);
+                    if (!file.type && !file.name.match(/.*md$/)) {
+                        continue;
+                    } else
+
+                    if (file.type && !file.type.match(/^text\/.*/)) {
+                        continue;
+                    } else if (!file.type) {
+                        if (file.name.match(/.*md$/)) {
+                            isMarkdown = true;
+                        } else {
+                            continue;
+                        }
+                    }
+
+                    promises.push(addFile(partials, file, isMarkdown));
+                    isMarkdown = false;
+                }
+
+                $q.all(promises).then(function() {
+                    $timeout(function() {
+                        $scope.course.contents.partials = $scope.course.contents.partials.concat(partials);
+                        document.body.style.cursor = '';
+                    }, 0);
+                });
+            }
+
+
+            function addFile(partials, file, isMarkdown) {
+                var deferred = $q.defer();
+                var name = file.name;
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    partials.push({
+                        index: partials.length,
+                        name: file.name.substring(0, file.name.lastIndexOf('.')),
+                        url: e.target.result,
+                        markdown: isMarkdown,
+                        embedded: true
+                    });
+                    deferred.resolve();
+                };
+                reader.readAsDataURL(file);
+                return deferred.promise;
+            }
+        }
+
 
     });
