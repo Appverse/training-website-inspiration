@@ -14,7 +14,6 @@ angular.module('App.Controllers')
         $scope.$on('$stateChangeSuccess', setupDropZone);
 
         $scope.create = function() {
-            $scope.course.parent
             courseService.createCourse($scope.course);
         };
 

@@ -17,7 +17,6 @@
                 </tab>
                 <tab ng-if="course.contents.partials" ng-repeat="partial in course.contents.partials" heading="{{partial.name}}">
                     <div ng-if="!partial.markdown" ng-include="partial.url"></div>
-                    {{partial}}
                     <div ng-if="partial.markdown" marked src="partial.url"></div>
                 </tab>
             </tabset>
