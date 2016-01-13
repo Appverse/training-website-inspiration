@@ -3,3 +3,8 @@ bower_components
 .tmp
 .vscode
 typings
+app/styles/css/
+app/resources/i18n/angular/
+app/styles/fonts/glyphicons-halflings-regular.svg
+dist/
+app/styles/fonts/

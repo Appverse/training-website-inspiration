@@ -24,6 +24,8 @@
     <link rel="stylesheet" type="text/css" href="bower_components/angularjs-slider/dist/rzslider.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/selectize/dist/css/selectize.css">
     <link rel="stylesheet" type="text/css" href="bower_components/angular-chart.js/dist/angular-chart.css">
+    <link rel="stylesheet" href="bower_components/video.js/dist/video.min.js">
+    <link rel="stylesheet" href="bower_components/highlightjs/styles/default.css">
     <!-- endbuild -->
 
     <!-- build:css styles/css/styles.css -->
@@ -37,48 +39,62 @@
 
 <!--Include the module with the app scope-->
 
-<body data-ng-app="webApp">
+<body  data-ng-app="webApp" ng-cloak>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+      <![endif]-->
 
     <!--[if lt IE 10]>
       <script src="bower_components/es5-shim/es5-shim.js"></script>
       <script src="bower_components/es5-shim/es5-sham.js"></script>
       <script src="bower_components/json3/lib/json3.min.js"></script>
       <script src="bower_components/placeholders/dist/placeholders.min.js"></script>
-    <![endif]-->
+      <![endif]-->
 
     <!-- HEADER/NAVIGATION BAR
      This is the unnamed root, aka index.html
      You can place here your components in the ui-view points.
-    -->
-    <nav class="navbar navbar-default navbar-fixed-top">
+ -->
+ <div data-ng-class="{ loading: loading}">
+    <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+  </div>
+</div>
+<nav class="navbar navbar-default navbar-fixed-top">
 
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
             <!-- ui-sref is a directive from ui-router for linking a state location with an anchor link.
                  We should almost always use ui-sref instead of href on our links when we want
                  then to navigate to a state. When this link is clicked it will take the application
                  to the 'home' state. Behind the scenes the directive also adds the correct href attr
                  and url. -->
-            <a class="navbar-brand" ui-sref="home">
+                 <a class="navbar-brand" ui-sref="home">
 
-            </a>
-        </div>
+                 </a>
+             </div>
 
-        <div class="collapse navbar-collapse " id="main-navbar-collapse">
-            <ul class="nav navbar-nav ">
+             <div class="collapse navbar-collapse " id="main-navbar-collapse">
+                <ul class="nav navbar-nav ">
                 <!-- Here you can see ui-sref in action again. Also notice the use of $state.includes, which
                  will set the links to 'active' if, for example on the first link, 'contacts' or any of
                  its descendant states are activated. -->
-                <li data-ng-class="{ active: $state.includes(&apos;home&apos;) }">
-                    <a angular-ripple="" ui-sref="home"><i class="glyphicon glyphicon-bookmark"></i>Training</a>
+                 <li data-ng-class="{ active: $state.includes(&apos;home&apos;) }">
+                    <a angular-ripple="" ui-sref="home"><i class="glyphicon glyphicon-bookmark"></i>Home</a>
+                </li>
+                <li ng-repeat="area in areas" data-ng-class="{ active: $state.includes(&apos;{{area.name}}&apos;) }">
+                    <a angular-ripple="" ui-sref="{{area.name}}"><i class="glyphicon glyphicon-book"></i>{{area.name}}</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                 <li data-ng-class="{ active: $state.includes(&apos;admin&apos;) }">
+                    <a angular-ripple="" ui-sref="admin.create"><i class="glyphicon glyphicon-cog"></i></a>
                 </li>
             </ul>
         </div>
@@ -88,63 +104,74 @@
          Here is the main ui-view (it is unnamed) as the main content insertion point.
          It replaces the default Angular's ng-view directive.
      -->
-    <div ui-view="" class="fade-in" autoscroll="false"></div>
+     <div ui-view="" class="fade-in" autoscroll="false"></div>
 
-    <!-- build:js scripts/scripts.js -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.min.js"></script>
-    <script src="bower_components/modernizr/modernizr.js"></script>
-    <script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-    <script src="bower_components/ng-grid/build/ng-grid.min.js"></script>
-    <script src="bower_components/venturocket-angular-slider/build/angular-slider.min.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
-    <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
-    <script src="bower_components/appverse-web-html5-core/dist/appverse/appverse.min.js"></script>
-    <script src="bower_components/appverse-web-html5-core/dist/appverse-router/appverse-router.min.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="bower_components/appverse-web-html5-core/dist/appverse-utils/appverse-utils.min.js"></script>
-    <script src="bower_components/angular-ripple/angular-ripple.js"></script>
-    <script src="bower_components/angular-ui-select/dist/select.min.js"></script>
-    <script src="bower_components/angularjs-slider/dist/rzslider.min.js"></script>
-    <script src="bower_components/angular-resize/dist/angular-resize.min.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-    <script src="bower_components/Chart.js/Chart.min.js"></script>
-    <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
-    <script src="app.js"></script>
-    <script src="states/app-states.js"></script>
-    <script src="bower_components/angular-cache/dist/angular-cache.min.js"></script>
-    <script src="bower_components/appverse-web-html5-core/dist/appverse-cache/appverse-cache.min.js"></script>
-    <script src="bower_components/appverse-web-html5-core/dist/appverse-detection/appverse-detection.min.js"></script>
-    <script src="bower_components/appverse-web-html5-core/dist/appverse-logging/appverse-logging.min.js"></script>
-    <script src="bower_components/appverse-web-html5-core/dist/appverse-performance/appverse-performance.min.js"></script>
-    <script src="bower_components/lodash/lodash.min.js"></script>
-    <script src="bower_components/restangular/dist/restangular.min.js"></script>
-    <script src="bower_components/appverse-web-html5-core/dist/appverse-rest/appverse-rest.min.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
-    <script src="bower_components/appverse-web-html5-security/dist/appverse-html5-security.min.js"></script>
-    <script src="bower_components/socket.io-client/dist/socket.io.min.js"></script>
-    <script src="bower_components/appverse-web-html5-core/dist/appverse-serverpush/appverse-serverpush.min.js"></script>
-    <script src="bower_components/angular-translate/angular-translate.min.js"></script>
-    <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
-    <script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
-    <script src="bower_components/appverse-web-html5-core/dist/appverse-translate/appverse-translate.min.js"></script>
-    <!-- TRAINING COMPONENTS-->
-    <script src="components/home/home-controller.js"></script>
-    <script src="components/common/common-controller.js"></script>
-    <script src="components/common/course-services.js"></script>
-    <script src="components/common/right-menu-directives.js"></script>
-    <script src="components/common/jumbotron-directive.js"></script>
-    <script src="components/common/videocontrol-factory.js"></script>
+     <!-- build:js scripts/scripts.js -->
+     <script src="bower_components/jquery/dist/jquery.min.js"></script>
+     <script src="bower_components/angular/angular.js"></script>
+     <script src="bower_components/angular-touch/angular-touch.min.js"></script>
+     <script src="bower_components/modernizr/modernizr.js"></script>
+     <script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>
+     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+     <script src="bower_components/ng-grid/build/ng-grid.min.js"></script>
+     <script src="bower_components/venturocket-angular-slider/build/angular-slider.min.js"></script>
+     <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+     <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+     <script src="bower_components/appverse-web-html5-core/dist/appverse/appverse.min.js"></script>
+     <script src="bower_components/appverse-web-html5-core/dist/appverse-router/appverse-router.min.js"></script>
+     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+     <script src="bower_components/appverse-web-html5-core/dist/appverse-utils/appverse-utils.min.js"></script>
+     <script src="bower_components/angular-ripple/angular-ripple.js"></script>
+     <script src="bower_components/angular-ui-select/dist/select.min.js"></script>
+     <script src="bower_components/angularjs-slider/dist/rzslider.min.js"></script>
+     <script src="bower_components/angular-resize/dist/angular-resize.min.js"></script>
+     <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+     <script src="bower_components/marked/lib/marked.js"></script>
+     <script src="bower_components/angular-marked/dist/angular-marked.js"></script>
+     <script src="bower_components/Chart.js/Chart.min.js"></script>
+     <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
+     <script src="bower_components/pouchdb/dist/pouchdb.min.js"></script>
+     <script src="bower_components/angular-pouchdb/angular-pouchdb.min.js"></script>
+     <script src="bower_components/video.js/dist/video.min.js"></script>
+     <script src="bower_components/highlightjs/highlight.pack.min.js"></script>
+     <script src="app.js"></script>
+     <script src="states/app-states.js"></script>
+     <script src="bower_components/angular-cache/dist/angular-cache.min.js"></script>
+     <script src="bower_components/appverse-web-html5-core/dist/appverse-cache/appverse-cache.min.js"></script>
+     <script src="bower_components/appverse-web-html5-core/dist/appverse-detection/appverse-detection.min.js"></script>
+     <script src="bower_components/appverse-web-html5-core/dist/appverse-logging/appverse-logging.min.js"></script>
+     <script src="bower_components/appverse-web-html5-core/dist/appverse-performance/appverse-performance.min.js"></script>
+     <script src="bower_components/lodash/lodash.min.js"></script>
+     <script src="bower_components/restangular/dist/restangular.min.js"></script>
+     <script src="bower_components/appverse-web-html5-core/dist/appverse-rest/appverse-rest.min.js"></script>
+     <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+     <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+     <script src="bower_components/appverse-web-html5-security/dist/appverse-html5-security.min.js"></script>
+     <script src="bower_components/socket.io-client/dist/socket.io.min.js"></script>
+     <script src="bower_components/appverse-web-html5-core/dist/appverse-serverpush/appverse-serverpush.min.js"></script>
+     <script src="bower_components/angular-translate/angular-translate.min.js"></script>
+     <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+     <script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
+     <script src="bower_components/appverse-web-html5-core/dist/appverse-translate/appverse-translate.min.js"></script>
+     <!-- TRAINING COMPONENTS-->
+     <script src="components/common/db-service.js"></script>
+     <script src="components/common/offline-service.js"></script>
+     <script src="components/common/state-service.js"></script>
+     <script src="components/course/course-service.js"></script>
+     <script src="components/course/course-model.js"></script>
+     <script src="components/course/course-controller.js"></script>
+     <script src="components/course/directives/directives.js"></script>
+     <script src="components/home/home-controller.js"></script>
+     <script src="components/admin/admin-controller.js"></script>
+     <script src="components/common/videocontrol-factory.js"></script>
 
-    <!-- endbuild -->
-    <!-- build:js scripts/pdfScripts.js -->
-    <!-- PDF COMPONENTS-->
-    <script src="bower_components/pdfjs-dist/build/pdf.combined.js"></script>
-    <script src="bower_components/angular-pdf/dist/angular-pdf.js"></script>
-    <!-- endbuild -->
-</body>
+     <script src="components/devel/dev-service.js"></script>
+     <!-- endbuild -->
+     <!-- build:js scripts/pdfScripts.js -->
+     <!-- PDF COMPONENTS-->
+     <script src="bower_components/pdfjs-dist/build/pdf.combined.js"></script>
+     <script src="bower_components/angular-pdf/dist/angular-pdf.js"></script>
+     <!-- endbuild -->
+ </body>
 
-</html>
+ </html>

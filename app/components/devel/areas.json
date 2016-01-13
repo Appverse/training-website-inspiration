@@ -1,0 +1,25 @@
+[{
+    "name": "Appverse",
+    "parent": null,
+    "metadata": {
+        "title": "Appverse trainings",
+        "tag" : {
+            "level":"primary",
+            "value":"cool stuff"
+        },
+        "subtitle": "A short subtitle, Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum, sed.",
+        "description": "A longer description Lorem ipsum dolor sit amet, consectet odio dolorem! Asperius blanditiis provident ex. Expedita ad, eaque sit dolore! Error asperiores voluptates mollitia quos. Eius sapiente officiis harum iste maiores, cumque iusto velit laudantium assumenda provident tempora, eos nemo, rem quasi vel dolorem corrupti. Animi quibusdam, nobis obcaecati, at recusandae corporis a totam, sint, numquam id non alias nam eligendi ex veritatis!",
+        "imgURL": "http://appverse.org/images/9f30e50b.logo.png",
+        "difficulty": 5
+    }
+}, {
+    "name": "Big Data",
+    "parent": null,
+    "metadata": {
+        "title": "Big Data trainings",
+        "subtitle": "",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque libero quaerat facere molestias, veniam unde eveniet quasi dolorem tempore labore!",
+        "imgURL": "http://powernet.es/web/wp-content/uploads/2014/06/big_data_dundas.png",
+        "difficulty": 5
+    }
+}]

@@ -1,0 +1,8 @@
+<div class="panel panel-primary" ng-if="documents.length">
+	<div class="panel-heading">
+		<h3 class="panel-title"><span class="glyphicon glyphicon-book" ></span>  Documentation</h3>
+	</div>
+	<div class="panel-body">
+		<a ng-repeat="document in documents" href="{{document.url}}" target="_blank" angular-ripple="" class="btn btn-default btn-block"></span>{{document.description}}</a>
+	</div>
+</div>
