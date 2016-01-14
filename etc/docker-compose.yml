@@ -3,9 +3,6 @@ app:
   environment:
    - VIRTUAL_HOST=training.*
    - DOMAIN_NAME=training
-  ports:
-   - "8080:8080"
-   - "5984:5984"
   expose:
    - "8080"
   links:

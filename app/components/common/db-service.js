@@ -50,7 +50,7 @@ function dbService($log, pouchDB, $window, $q) {
     }
 
     function replicate() {
-        return trainingDB.replicate.from('http://localhost:5984/training').$promise;
+        return trainingDB.replicate.from('/couchdb/training').$promise;
     }
 
     function addViews() {
