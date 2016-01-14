@@ -44,17 +44,17 @@ function devService($log, $q, $http, $window, dbService, courseService, Course) 
 
     function createAreas() {
         $log.debug('creating areas');
-        return $http.get('components/devel/areas.json').then(createCoursesFromJSON);
+        return $http.get('resources/config/areas.json').then(createCoursesFromJSON);
     }
 
     function createUnits() {
         $log.debug('creating units');
-        return $http.get('components/devel/units.json').then(createCoursesFromJSON);
+        return $http.get('resources/config/units.json').then(createCoursesFromJSON);
     }
 
     function createCourses() {
         $log.debug('creating courses');
-        return $http.get('components/devel/courses.json').then(createCoursesFromJSON);
+        return $http.get('resources/config/courses.json').then(createCoursesFromJSON);
     }
 
 }

@@ -70,6 +70,11 @@ function courseContents() {
         scope: {
             course: '='
         },
+        controller: ['$scope',
+            function($scope) {
+                $scope.pdfUrl = $scope.course.contents && $scope.course.contents.pdfUrl;
+            }
+        ],
         templateUrl: 'components/course/directives/course-contents.html',
     };
 }
