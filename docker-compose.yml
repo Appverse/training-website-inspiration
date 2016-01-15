@@ -7,6 +7,7 @@ app:
    - "8080"
   links:
    - db
+   command: sh /etc/training/run-script.sh
 db:
   image: klaemo/couchdb:latest
   expose:
