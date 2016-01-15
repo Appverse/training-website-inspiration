@@ -1,5 +1,6 @@
 app:
   build: .
+  command: sh /etc/training/run-script.sh
   environment:
    - VIRTUAL_HOST=training.*
    - DOMAIN_NAME=training
@@ -7,7 +8,6 @@ app:
    - "8080"
   links:
    - db
-   command: sh /etc/training/run-script.sh
 db:
   image: klaemo/couchdb:latest
   expose:
