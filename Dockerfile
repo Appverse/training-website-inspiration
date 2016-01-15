@@ -4,6 +4,7 @@ FROM nginx
 COPY dist/web /usr/share/nginx/html
 
 # Copy init-script & datadump
+RUN mkdir /etc/training
 COPY datadump.json /etc/training
 COPY run-script.sh /etc/training
 
