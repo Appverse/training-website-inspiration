@@ -9,9 +9,9 @@ function hasValue(obj, val) {
     return false;
 }
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
 
-    grunt.task.registerTask('server', 'Serves de application.', function (arg1, arg2, arg3) {
+    grunt.task.registerTask('server', 'Serves de application.', function(arg1, arg2, arg3) {
         var isOpen = hasValue(arguments, "open");
         var isMock = hasValue(arguments, "mock");
         var isDist = hasValue(arguments, "dist");
@@ -22,16 +22,41 @@ module.exports = function (grunt) {
                 }
             }
         });
+
+        var proxyMiddleware = require('http-proxy-middleware');
+        // configure proxy middleware context
+        var context = '/couchdb'; // requests with this path will be proxied
+        // configure proxy middleware options
+        var options = {
+            target: 'http://localhost:5984', // target host
+            changeOrigin: true, // needed for virtual hosted sites
+            ws: true, // proxy websockets
+            pathRewrite: {
+                '^/couchdb': '' // rewrite paths
+            },
+            proxyTable: {
+                // when request.headers.host == 'dev.localhost:3000',
+                // override target 'http://www.example.org' to 'http://localhost:8000'
+                'localhost:9000': 'http://localhost:8888'
+            }
+        };
+        grunt.config.merge({
+            browserSync: {
+                options: {
+                    middleware: proxyMiddleware(context, options)
+                }
+            }
+        });
+
         if (!isMock && !isDist) {
-            grunt.log.writeln("Running Server");
+            grunt.log.writeln('Running Server');
             grunt.task.run('serve');
         }
         if (isMock) {
-            var proxyMiddleware = require('http-proxy-middleware');
             // configure proxy middleware context
-            var context = '/api'; // requests with this path will be proxied
+            context = '/api'; // requests with this path will be proxied
             // configure proxy middleware options
-            var options = {
+            options = {
                 target: 'http://localhost:8888', // target host
                 changeOrigin: true, // needed for virtual hosted sites
                 ws: true, // proxy websockets

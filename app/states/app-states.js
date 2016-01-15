@@ -62,7 +62,7 @@ angular.module('webApp')
     .run(function($log, $q, $rootScope, courseService, devService, stateService) {
         $rootScope.loading = true;
 
-        var createDatabaseFromJSONStubs = true;
+        var createDatabaseFromJSONStubs = false;
         devService
             .creatStubCurriculum(createDatabaseFromJSONStubs)
             .then(courseService.listAll)
