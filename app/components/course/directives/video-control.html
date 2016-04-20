@@ -1,0 +1,12 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title"><span class="glyphicon glyphicon-facetime-video" > </span>     Navigate Video</h3>
+    </div>
+    <div class="panel-body">
+    <select name="videoSelect" id="videoSelect" ng-options="video.time as video.description for video in video.videoTimes"
+        angular-ripple="" class="form-control"
+         ng-change="jumpVideo(data.videoSelect, 'videoTutorial')"
+         ng-model="data.videoSelect">
+    </select>
+</div>
+</div>

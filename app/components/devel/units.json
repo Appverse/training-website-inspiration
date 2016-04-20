@@ -1,0 +1,32 @@
+[{
+    "name": "Appverse Web",
+    "parent": "Appverse",
+    "metadata": {
+        "title": "Appverse Web",
+        "tag" : {
+            "level":"warning",
+            "value":"new courses"
+        },
+        "subtitle": "Rich Internet Application Development Stack",
+        "description": "Appverse Web is a multi-faceted full-stack framework that incorporates best-of-breed open source frontend and backend technologies. Developers can leverage cutting-edge HTML5 possibilities and still meet the challenges of secure and robust server-side service development, integration, and delivery.",
+        "imgURL": "http://appverse.org/images/6cdd31d7.web-work.png",
+        "difficulty": 5
+    },
+    "contents": {
+        "partials": [{
+            "name": "Before starting",
+            "url": "/resources/courses/Appverse/Appverse%20Web/before-starting.md",
+            "markdown": true
+        }]
+    }
+}, {
+    "name": "Appverse Mobile",
+    "parent": "Appverse",
+    "metadata": {
+        "title": "Appverse Mobile",
+        "subtitle": "Multi-Platform Mobile App Development",
+        "description": "The multi-platform mobile development framework enables developers to use HTML5, JavaScript, and CSS3 and to leverage native mobile functionalities to build apps from a common codebase. All major mobile platforms are supported",
+        "imgURL": "http://appverse.org/images/f295affb.mobile-work.png ",
+        "difficulty": 3
+    }
+}]

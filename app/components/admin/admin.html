@@ -1,0 +1,20 @@
+<div id="adminContainer" class="container" scrolly-scroll>
+
+    <fieldset class="form-group">
+     <div class="col-md-4">
+         <h1>Administration</h1>
+         </div>
+     <div class="col-md-4">
+         <h3 class="toggle-button">
+             <label>
+                 <input type="checkbox" ng-click="togglePreview()"><span class="toggle"></span>preview
+             </label>
+         </h3>
+     </div>
+        <h3 class="pull-right">
+            <button angular-ripple ng-click="create()" class="btn btn-default">create {{course.parent? 'course':'area'}}</button>
+        </h3>
+    </fieldset>
+    <div  ui-view="" class="fade-in" autoscroll="false"></div>
+
+</div>

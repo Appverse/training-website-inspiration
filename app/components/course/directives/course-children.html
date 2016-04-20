@@ -1,0 +1,46 @@
+<div class="container" scrolly-scroll>
+    <div class="row">
+        <div class="container" scrolly-scroll >
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-sm-6 col-md-3 " ng-repeat="child in children">
+                        <div class="thumbnail">
+                            <div ng-if="child.metadata.tag" class="ribbon {{child.metadata.tag.level}}"><span>{{child.metadata.tag.value}}</span></div>
+                            <div class="row">
+                                <div class="col-md-12 col-xs-12">
+                                    <div class="offline-status">
+                                        <img ng-click="cacheCourse($index)"
+                                        ng-class="child.downloading? 'bounce' : ''"
+                                        ng-src="{{!child.cached? 'https://cdn0.iconfinder.com/data/icons/good-weather-1/96/weather_icons-69-32.png' : 'https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_cloud_off_48px-20.png'}}">
+                                    </div>
+                                    <h4 class="text-center title">
+                                        {{child.metadata.title}}
+                                    </h4>
+                                </div>
+
+                            </div>
+                            <img class="img-responsive" ng-src="{{child.metadata.imgURL}}">
+                            <div class="caption">
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12">
+
+                                        <h4>{{child.metadata.subtitle}}</h4>
+                                    </div>
+                                </div>
+                                <p>{{child.metadata.description}}</p>
+                                <p>Difficulty:
+                                    <span ng-repeat="i in getNumber(child.metadata.difficulty) track by $index" class="glyphicon glyphicon-star" >{{n}}</span>
+                                </p>
+                                <div class="button">
+                                    <a class="btn btn-primary btn-block" ng-disabled="!child.active" ui-sref="{{child.calculateStatePath()}}">start</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
