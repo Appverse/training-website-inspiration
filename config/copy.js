@@ -17,6 +17,7 @@ module.exports = {
                 'styles/fonts/*',
                 'images/*',
                 '*.html',
+                'service-worker.js',
                 'components/**/*.html',
                 'template/**/*.html'
             ]
@@ -34,6 +35,11 @@ module.exports = {
             expand: true,
             cwd: '<%= paths.app %>/styles/sass/theme',
             dest: '<%= paths.dist %>/styles/css/theme',
+            src: '**/*'
+        }, {
+            expand: true,
+            cwd: '<%= paths.app %>/../.tmp/concat/scripts',
+            dest: '<%= paths.dist %>/scripts',
             src: '**/*'
         }, {
             expand: true,
