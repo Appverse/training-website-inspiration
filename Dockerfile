@@ -5,11 +5,11 @@ COPY dist/web /usr/share/nginx/html
 
 # Copy init-script & datadump
 RUN mkdir /etc/training
-COPY datadump.json /etc/training
-COPY run-script.sh /etc/training
+COPY etc/datadump.json /etc/training
+COPY etc/run-script.sh /etc/training
 
 # Copy nginx config with proxy to couchdb
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY etc/default.conf /etc/nginx/conf.d/default.conf
 
 # install curl
 RUN apt-get -qq update
